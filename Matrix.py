@@ -49,10 +49,10 @@ class Matrix:
             a, b = self, other
         result = [[0] * len(b.data[0]) for _ in range(len(a.data))]
         for i in range(len(a.data)):
-            for j in range(b.data[0]):
+            for j in range(len(b.data[0])):
                 summa = 0
-                for k in range(a.data[0]):
-                    k += a.data[i][k] * b.data[j][k]
+                for k in range(len(a.data[0])):
+                    summa += a.data[i][k] * b.data[k][j]
                 result[i][j] = summa
         return Matrix(result)
 
@@ -64,3 +64,5 @@ if __name__ == '__main__':
     print(n)
     print(m == n)
     print(m + n)
+    p = Matrix([[1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1]])
+    print(m * p)
