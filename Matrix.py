@@ -17,6 +17,13 @@ class Matrix:
             result = f'{result}\n'
         return result
 
+    def __repr__(self):
+        result = ''
+        for row in self.data:
+            for el in row:
+                result = f'{result} {el:>5}'
+        return f'Matrix({result})'
+
     def __eq__(self, other):
         if len(self.data) == len(other.data) and len(self.data[0]) == len(other.data[0]):
             for i in range(len(self.data)):
@@ -27,7 +34,7 @@ class Matrix:
         return False
 
     def __add__(self, other):
-        result = [[0] * len(self.data[0]) for i in range(len(self.data))]
+        result = [[0] * len(self.data[0]) for _ in range(len(self.data))]
         for i in range(len(self.data)):
             for j in range(len(self.data[0])):
                 result[i][j] = self.data[i][j] + other.data[i][j]
@@ -40,7 +47,7 @@ class Matrix:
             a, b = other, self
         else:
             a, b = self, other
-        result = [[0] * len(b.data[0]) for i in range(len(a.data))]
+        result = [[0] * len(b.data[0]) for _ in range(len(a.data))]
         for i in range(len(a.data)):
             for j in range(b.data[0]):
                 summa = 0
