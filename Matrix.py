@@ -33,15 +33,21 @@ class Matrix:
                 result[i][j] = self.data[i][j] + other.data[i][j]
         return Matrix(result)
 
-    # def __mul__(self, other):
-    #     if len(self.data[0]) != len(other.data):
-    #         return -1
-    #     result = [[0] * len(other.data[0]) for i in range(len(self.data))]
-    #     for i in range(len(self.data)):
-    #         k = 0
-    #         for j in range(other.data):
-    #             k += self.data[i][j] * other.data[j][i]
-    #         result[i][]
+    def __mul__(self, other):
+        if len(self.data[0]) != len(other.data) and len(other.data[0]) != len(self.data):
+            return -1
+        if len(other.data[0]) != len(self.data):
+            a, b = other, self
+        else:
+            a, b = self, other
+        result = [[0] * len(b.data[0]) for i in range(len(a.data))]
+        for i in range(len(a.data)):
+            for j in range(b.data[0]):
+                summa = 0
+                for k in range(a.data[0]):
+                    k += a.data[i][k] * b.data[j][k]
+                result[i][j] = summa
+        return Matrix(result)
 
 
 if __name__ == '__main__':
